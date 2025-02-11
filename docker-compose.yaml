@@ -1,6 +1,8 @@
 services:
   web:
-    image: nginx:stable
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
     ports:
       - "3080:80"
     volumes:
