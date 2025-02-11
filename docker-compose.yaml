@@ -12,9 +12,7 @@ services:
       - php
       - db
     networks:
-      - dokploy-network
-    labels:
-      - traefik.enable=true
+      - php-network
 
   php:
     image: php:8.4-fpm
@@ -23,7 +21,7 @@ services:
     depends_on:
       - db
     networks:
-      - dokploy-network
+      - php-network
 
   db:
     image: mysql:8.0
@@ -35,11 +33,12 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - dokploy-network
+      - php-network
 
 volumes:
   db_data:
 
 networks:
-  dokploy-network:
+  php-network:
+    name: php-network
     external: true
