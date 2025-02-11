@@ -15,7 +15,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.stock-symfony.rule=Host(`stock.nolandartois.fr`)
       - traefik.http.routers.stock-symfony.entrypoints=web
-      - traefik.http.services.stock-symfony.loadbalancer.server.port=3000
+      - traefik.http.services.stock-symfony.loadbalancer.server.port=3080
 
   php:
     image: php:8.4-fpm
