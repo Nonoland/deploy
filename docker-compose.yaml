@@ -11,8 +11,6 @@ services:
     depends_on:
       - php
       - db
-    networks:
-      - php-network
 
   php:
     image: php:8.4-fpm
@@ -20,8 +18,6 @@ services:
       - ./:/var/www/symfony
     depends_on:
       - db
-    networks:
-      - php-network
 
   db:
     image: mysql:8.0
@@ -32,11 +28,6 @@ services:
       MYSQL_PASSWORD: symfonypassword
     volumes:
       - db_data:/var/lib/mysql
-    networks:
-      - php-network
 
 volumes:
   db_data:
-
-networks:
-  php-network:
