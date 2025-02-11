@@ -2,16 +2,16 @@ services:
   web:
     image: nginx:latest
     ports:
-      - "${APP_PORT}:80"
+      - "3080:80"
     volumes:
       - .:/var/www/html
       - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     labels:
       - traefik.enable=true
-      - traefik.http.routers.${HASH}.rule=Host(${APP_HOST})
-      - traefik.http.routers.${HASH}.entrypoints=websecure
-      - traefik.http.routers.${HASH}.tls.certResolver=letsencrypt
-      - traefik.http.services.${HASH}.loadbalancer.server.port=${APP_PORT}
+      - traefik.http.routers.web.rule=Host(`stock.nolandartois.fr`)
+      - traefik.http.routers.web.entrypoints=websecure
+      - traefik.http.routers.web.tls.certResolver=letsencrypt
+      - traefik.http.services.web.loadbalancer.server.port=3080
 
   whoami:
     image: traefik/whoami
