@@ -7,11 +7,11 @@ services:
       - .:/var/www/html
       - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.${HASH}.rule=Host(${APP_HOST})"
-      - "traefik.http.routers.${HASH}.entrypoints=websecure"
-      - "traefik.http.routers.${HASH}.tls.certResolver=letsencrypt"
-      - "traefik.http.services.${HASH}.loadbalancer.server.port=${APP_PORT}"
+      - traefik.enable=true
+      - traefik.http.routers.${HASH}.rule=Host(${APP_HOST})
+      - traefik.http.routers.${HASH}.entrypoints=websecure
+      - traefik.http.routers.${HASH}.tls.certResolver=letsencrypt
+      - traefik.http.services.${HASH}.loadbalancer.server.port=${APP_PORT}
 
   whoami:
     image: traefik/whoami
