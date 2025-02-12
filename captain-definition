@@ -1,4 +1,28 @@
 {
   "schemaVersion": 2,
-  "dockerfilePath": "./Dockerfile"
+  "dockerfileLines": [
+    "FROM php:8.1-apache",
+    "COPY ./src/ /var/www/html/",
+    "EXPOSE 80"
+  ],
+  "services": [
+    {
+      "id": "web",
+      "image": "php:8.1-apache",
+      "containerHttpPort": "80",
+      "volumes": [
+        {
+          "localPath": "./src",
+          "containerPath": "/var/www/html"
+        }
+      ],
+      "environmentVariables": {
+        "ENV": "production",
+        "APP_ENV": "production"
+      },
+      "arns": [],
+      "restartPolicy": "always"
+    }
+  ],
+  "captainVersion": "4"
 }
